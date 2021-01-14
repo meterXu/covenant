@@ -24,6 +24,9 @@
   font-weight: bold;
   color: #fff;
   margin: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .site-layout .site-layout-background {
