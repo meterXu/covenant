@@ -14,6 +14,8 @@
 
 # production
 /build
+.idea
+*.lock
 
 # misc
 .DS_Store
