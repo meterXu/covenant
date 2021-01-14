@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css'
 import React from 'react'
 import Head from 'next/head'
+import Logo from "./components/Logo";
 import { Layout, Menu } from 'antd';
 import {
     MenuUnfoldOutlined,
@@ -34,7 +35,7 @@ class Home  extends React.Component{
           <main className={styles.main}>
               <Layout>
                   <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                      <div className={styles.logo} />
+                      <Logo/>
                       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                           <Menu.Item key="1" icon={<UserOutlined />}>
                               nav 1
