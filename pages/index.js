@@ -1,65 +1,74 @@
+import React from 'react'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { Layout, Menu } from 'antd';
+import {
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
+} from '@ant-design/icons';
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+const { Header, Sider, Content } = Layout;
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+class Home  extends React.Component{
+    state = {
+        collapsed: false,
+    };
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+    toggle = () => {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  render() {
+    return (
+        <div>
+          <Head>
+            <title>covenant</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <main>
+              <Layout>
+                  <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                      <div className="logo" />
+                      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                          <Menu.Item key="1" icon={<UserOutlined />}>
+                              nav 1
+                          </Menu.Item>
+                          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+                              nav 2
+                          </Menu.Item>
+                          <Menu.Item key="3" icon={<UploadOutlined />}>
+                              nav 3
+                          </Menu.Item>
+                      </Menu>
+                  </Sider>
+                  <Layout className="site-layout">
+                      <Header className="site-layout-background" style={{ padding: 0 }}>
+                          {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                              className: 'trigger',
+                              onClick: this.toggle,
+                          })}
+                      </Header>
+                      <Content
+                          className="site-layout-background"
+                          style={{
+                              margin: '24px 16px',
+                              padding: 24,
+                              minHeight: 280,
+                          }}
+                      >
+                          Content
+                      </Content>
+                  </Layout>
+              </Layout>
+          </main>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+    )
+  }
 }
+
+export default Home
