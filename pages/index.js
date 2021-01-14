@@ -1,3 +1,4 @@
+import styles from '../styles/Home.module.css'
 import React from 'react'
 import Head from 'next/head'
 import { Layout, Menu } from 'antd';
@@ -24,16 +25,16 @@ class Home  extends React.Component{
 
   render() {
     return (
-        <div>
+        <div className={styles.container}>
           <Head>
             <title>covenant</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <main>
+          <main className={styles.main}>
               <Layout>
                   <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-                      <div className="logo" />
+                      <div className={styles.logo} />
                       <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                           <Menu.Item key="1" icon={<UserOutlined />}>
                               nav 1
@@ -46,15 +47,15 @@ class Home  extends React.Component{
                           </Menu.Item>
                       </Menu>
                   </Sider>
-                  <Layout className="site-layout">
-                      <Header className="site-layout-background" style={{ padding: 0 }}>
+                  <Layout className={styles['site-layout']}>
+                      <Header className={styles['site-layout-background']} style={{ padding: 0 }}>
                           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                              className: 'trigger',
+                              className: styles.trigger,
                               onClick: this.toggle,
                           })}
                       </Header>
                       <Content
-                          className="site-layout-background"
+                          className={styles['site-layout-background']}
                           style={{
                               margin: '24px 16px',
                               padding: 24,
