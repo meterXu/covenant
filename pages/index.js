@@ -1,4 +1,4 @@
-import style from '../styles/Home.module.css'
+import style from '../styles/Home.module.less'
 import React from 'react'
 import Head from 'next/head'
 import Logo from "./components/Logo";
