@@ -5,7 +5,7 @@ module.exports = withLess({
     //     importLoaders: 1,
     //     localIdentName: "[local]___[hash:base64:5]",
     // },
-    // lessLoaderOptions : {
-    //     javascriptEnabled : true
-    // }
+    lessLoaderOptions : {
+        javascriptEnabled : false
+    }
 })

@@ -1,4 +1,3 @@
-import style from '../styles/Home.module.less'
 import React from 'react'
 import Head from 'next/head'
 import Logo from "./components/Logo";
@@ -10,6 +9,7 @@ import {
     VideoCameraOutlined,
     UploadOutlined,
 } from '@ant-design/icons';
+import style from '../styles/Home.module.less'
 
 const { Header, Sider, Content } = Layout;
 
