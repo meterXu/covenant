@@ -4,7 +4,6 @@
 .main{
   height: 100vh;
   display: flex;
-  background: red !important;
 }
 .trigger {
   font-size: 18px;
