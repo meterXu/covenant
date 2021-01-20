@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.less'
+import style from '../styles/Home.module.css'
 import React from 'react'
 import Head from 'next/head'
 import Logo from "./components/Logo";
@@ -26,13 +26,13 @@ class Home  extends React.Component{
 
   render() {
     return (
-        <div className={styles.container}>
+        <div className={style.container}>
           <Head>
             <title>covenant</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <main className={styles.main}>
+          <main className={style.main}>
               <Layout>
                   <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                       <Logo/>
@@ -48,10 +48,10 @@ class Home  extends React.Component{
                           </Menu.Item>
                       </Menu>
                   </Sider>
-                  <Layout className={styles['site-layout']}>
+                  <Layout className={style['site-layout']}>
                       <Header style={{ padding: 0 }}>
                           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                              className: styles.trigger,
+                              className: style.trigger,
                               onClick: this.toggle,
                           })}
                       </Header>
