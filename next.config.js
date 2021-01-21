@@ -5,7 +5,7 @@ const cssLoaderGetLocalIdent = require("css-loader/lib/getLocalIdent.js");
 const path = require('path');
 
 module.exports = withPlugins([withLess,withCss], {
-    lessLoaderOptions : {
+    lessLoaderOptions : {//如果是antd就需要，antd-mobile不需要
         javascriptEnabled : true
     },
     cssModules: true,
