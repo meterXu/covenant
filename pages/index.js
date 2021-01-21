@@ -9,11 +9,11 @@ import {
     VideoCameraOutlined,
     UploadOutlined,
 } from '@ant-design/icons';
-import style from '../styles/Home.module.less'
+import styles from '../styles/Home.module.less'
 
 const { Header, Sider, Content } = Layout;
 
-class Home  extends React.Component{
+class Home extends React.Component{
     state = {
         collapsed: false,
     };
@@ -26,13 +26,13 @@ class Home  extends React.Component{
 
   render() {
     return (
-        <div className={style.container}>
+        <div className={styles.container}>
           <Head>
             <title>covenant</title>
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <main className={style.main}>
+          <main className={styles.main}>
               <Layout>
                   <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                       <Logo/>
@@ -48,10 +48,10 @@ class Home  extends React.Component{
                           </Menu.Item>
                       </Menu>
                   </Sider>
-                  <Layout className={style['site-layout']}>
+                  <Layout className={styles['site-layout']}>
                       <Header style={{ padding: 0 }}>
                           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                              className: style.trigger,
+                              className: styles.trigger,
                               onClick: this.toggle,
                           })}
                       </Header>
