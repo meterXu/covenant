@@ -34,7 +34,7 @@ class Home extends React.Component{
 
           <main className={styles.main}>
               <Layout>
-                  <Sider className={styles.sider_bg} trigger={null} collapsible collapsed={this.state.collapsed}>
+                  <Sider thmeme={'light'} className={styles.sider_bg} trigger={null} collapsible collapsed={this.state.collapsed}>
                       <Logo/>
                       <Menu mode="inline" defaultSelectedKeys={['1']}>
                           <Menu.Item key="1" icon={<UserOutlined />}>
