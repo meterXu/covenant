@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Logo from "./components/Logo";
-import { Layout, Menu } from 'antd';
+import {Button, Layout, Menu} from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
@@ -62,7 +62,7 @@ class Home extends React.Component{
                               minHeight: 280,
                           }}
                       >
-                          Content
+                          <Button>xxx</Button>
                       </Content>
                   </Layout>
               </Layout>

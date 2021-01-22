@@ -1,4 +1,9 @@
-const withLess = require('@zeit/next-less')
-module.exports = withLess({
-    cssModules:true
-})
+const withAntdLess = require('next-plugin-antd-less');
+module.exports = withAntdLess({
+    lessVarsFilePath:'./styles/variables.less',
+    cssLoaderOptions: {
+    },
+    webpack(config) {
+        return config;
+    },
+});
