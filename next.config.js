@@ -1,6 +1,9 @@
 const withAntdLess = require('next-plugin-antd-less');
+const { getThemeVariables } = require('antd/dist/theme');
 module.exports = withAntdLess({
-    lessVarsFilePath:'./styles/variables.less',
+    modifyVars:getThemeVariables({
+        dark: true
+    }),
     cssLoaderOptions: {
     },
     webpack(config) {
