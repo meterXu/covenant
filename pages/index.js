@@ -34,9 +34,9 @@ class Home extends React.Component{
 
           <main className={styles.main}>
               <Layout>
-                  <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                  <Sider className={styles.sider_bg} trigger={null} collapsible collapsed={this.state.collapsed}>
                       <Logo/>
-                      <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+                      <Menu mode="inline" defaultSelectedKeys={['1']}>
                           <Menu.Item key="1" icon={<UserOutlined />}>
                               nav 1
                           </Menu.Item>
@@ -49,7 +49,7 @@ class Home extends React.Component{
                       </Menu>
                   </Sider>
                   <Layout className={styles['site-layout']}>
-                      <Header style={{ padding: 0 }}>
+                      <Header className={styles.head_bg}>
                           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                               className: styles.trigger,
                               onClick: this.toggle,
