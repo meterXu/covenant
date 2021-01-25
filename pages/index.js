@@ -49,7 +49,7 @@ class Home extends React.Component{
                       </Menu>
                   </Sider>
                   <Layout className={styles['site-layout']}>
-                      <Header className={styles.head_bg}>
+                      <Header className={styles.head_bg} >
                           {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
                               className: styles.trigger,
                               onClick: this.toggle,
