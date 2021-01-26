@@ -7,12 +7,14 @@ class ThemeBtn extends React.Component{
     }
     handleChangeTheme=()=>{
         const theme = this.state.theme === 'default' ? 'dark' : 'default';
-        this.setState({ theme });
-        changeTheme(theme);
+        this.setState({ theme },()=>{
+            changeTheme(theme);
+        });
+        
     }
     render() {
-        const icon = this.state.theme==='dark'?<DarkIcon onClick={this.handleChangeTheme} style={{ color: '#fff',fontSize: '24px' }}/>:
-                    <LightIcon onClick={this.handleChangeTheme} style={{ color: '#333',fontSize: '24px' }}/>
+        const icon = this.state.theme==='dark'?<DarkIcon onClick={this.handleChangeTheme} style={{ color: '#FFFFFFD9',fontSize: '24px' }}/>:
+                    <LightIcon onClick={this.handleChangeTheme} style={{ color: '#000000D9',fontSize: '24px' }}/>
         return (
            <>
                 {icon}
