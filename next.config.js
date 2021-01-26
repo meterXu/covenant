@@ -8,10 +8,7 @@ module.exports = withAntdLess({
     modifyVars: getThemeVariables({
         dark:false
     }),
-    lessVarsFilePath:path.join('./pages/styles/vars.less'),
+    lessVarsFilePath:path.join('./theme/vars.less'),
     cssLoaderOptions: {
-    },
-    webpack(config) {
-        return config;
-    },
+    }
 });
