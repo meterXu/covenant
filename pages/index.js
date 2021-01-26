@@ -9,7 +9,7 @@ import {
     VideoCameraOutlined,
     UploadOutlined,
 } from '@ant-design/icons';
-
+import changeTheme from 'next-dynamic-antd-theme';
 const { Header, Sider, Content } = Layout;
 
 class Home extends React.Component{
@@ -33,7 +33,7 @@ class Home extends React.Component{
 
           <main style={{ minHeight: '100vh' }}>
               <Layout>
-                  <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+                  <Sider style={{ minHeight: '100vh' }} trigger={null} collapsible collapsed={this.state.collapsed}>
                       <Logo/>
                       <Menu mode="inline" defaultSelectedKeys={['1']}>
                           <Menu.Item key="1" icon={<UserOutlined />}>
@@ -60,7 +60,9 @@ class Home extends React.Component{
                               minHeight: 280,
                           }}
                       >
-                          <Button>xxx</Button>
+                          <Button onClick={()=>{
+                              changeTheme('dark');
+                          }}>xxx</Button>
                       </Content>
                   </Layout>
               </Layout>
