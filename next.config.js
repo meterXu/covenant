@@ -1,5 +1,7 @@
 const withLess = require('@zeit/next-less');
 const path = require('path');
+const fs = require('fs');
+const lessToJS = require('less-vars-to-js');
 const generateTheme = require('next-dynamic-antd-theme/plugin');
 const cssLoaderGetLocalIdent = require('css-loader/lib/getLocalIdent.js');
 
@@ -13,7 +15,7 @@ const withAntdTheme = generateTheme({
     outputFilePath: path.join(__dirname, './.next/static/color.less'),
     lessFilePath: `${prefix}_next/static/color.less`,
     lessJSPath: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.3/less.min.js',
-    customThemes: { dark: { '@primary-color': 'blue','@layout-header-background':'#141414' } },
+    customThemes: { dark: lessToJS(fs.readFileSync(path.join(__dirname,'./theme/dark.less'), 'utf8'))},
 });
 
 withAntd = (nextConfig = {}) => {

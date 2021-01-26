@@ -9,12 +9,14 @@ import {
     VideoCameraOutlined,
     UploadOutlined,
 } from '@ant-design/icons';
+import Icon from '@ant-design/icons';
 import changeTheme from 'next-dynamic-antd-theme';
 const { Header, Sider, Content } = Layout;
 
 class Home extends React.Component{
     state = {
         collapsed: false,
+        theme:'default'
     };
 
     toggle = () => {
@@ -22,6 +24,13 @@ class Home extends React.Component{
             collapsed: !this.state.collapsed,
         });
     };
+    changeTheme = ()=>{
+        debugger
+        const theme = this.state.theme == 'default' ? 'dark' : 'default';
+        this.setState({ theme }, () => {
+            changeTheme(theme);
+        });
+    }
 
   render() {
     return (
@@ -60,9 +69,10 @@ class Home extends React.Component{
                               minHeight: 280,
                           }}
                       >
-                          <Button onClick={()=>{
-                              changeTheme('dark');
-                          }}>xxx</Button>
+                          <Button onClick={this.changeTheme}>切换主题
+                              <Icon
+                                  component={this.state.theme == 'default' ? this.renderLight : this.renderDark}
+                              /></Button>
                       </Content>
                   </Layout>
               </Layout>
