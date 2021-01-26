@@ -6,7 +6,7 @@ const { getThemeVariables } = require('antd/dist/theme');
 
 module.exports = withAntdLess({
     modifyVars: getThemeVariables({
-        dark:true
+        dark:false
     }),
     lessVarsFilePath:path.join('./pages/styles/vars.less'),
     cssLoaderOptions: {
