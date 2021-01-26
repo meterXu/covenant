@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Logo from "./components/Logo";
-import { Button, Layout, Menu } from 'antd';
+import { Button, Layout, Menu,Row,Col } from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
@@ -46,12 +46,18 @@ class Home extends React.Component {
                             </Menu>
                         </Sider>
                         <Layout>
-                            <Header>
-                                {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                                    style: { color: '#fff', fontSize: '24px' },
-                                    onClick: this.toggle,
-                                })}
-                                <ThemeBtn />
+                            <Header style={{padding:'0 18px 0 12px'}}>
+                            <Row justify={'space-between'}>
+                                <Col span={2}>
+                                    {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+                                            style: { color: '#2f54eb', fontSize: '24px' },
+                                            onClick: this.toggle,
+                                        })}
+                                </Col>
+                                <Col span={2} style={{textAlign:'right'}}>
+                                    <ThemeBtn />
+                                </Col>
+                           </Row>
                             </Header>
                             <Content
                                 style={{

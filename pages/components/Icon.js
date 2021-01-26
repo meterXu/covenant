@@ -11,5 +11,4 @@ const DarkIcon = props => <Icon component={DarkSvg} {...props} />;
 
 const LightIcon = props => <Icon component={LightSvg} {...props} />;
 
-export {DarkIcon}
-export {LightIcon}
+export {DarkIcon,LightIcon}

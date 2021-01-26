@@ -11,8 +11,8 @@ class ThemeBtn extends React.Component{
         changeTheme(theme);
     }
     render() {
-        const icon = this.theme==='dark'?<DarkIcon onClick={this.handleChangeTheme} style={{ color: '#fff',fontSize: '24px' }}/>:
-                    <LightIcon onClick={this.handleChangeTheme} style={{ color: '#fff',fontSize: '24px' }}/>
+        const icon = this.state.theme==='dark'?<DarkIcon onClick={this.handleChangeTheme} style={{ color: '#fff',fontSize: '24px' }}/>:
+                    <LightIcon onClick={this.handleChangeTheme} style={{ color: '#333',fontSize: '24px' }}/>
         return (
            <>
                 {icon}
