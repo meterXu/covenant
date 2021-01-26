@@ -9,7 +9,7 @@ const prefix = prod ? '/next-dynamic-antd-theme/' : '/';
 const withAntdTheme = generateTheme({
     antDir: path.join(__dirname, './node_modules/antd'),
     stylesDir: path.join(__dirname, './theme'),
-    varFile: path.join(__dirname, './theme/vars.less'),
+    varFile: path.join(__dirname, './theme/light.less'),
     outputFilePath: path.join(__dirname, './.next/static/color.less'),
     lessFilePath: `${prefix}_next/static/color.less`,
     lessJSPath: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.3/less.min.js',
