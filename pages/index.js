@@ -3,13 +3,12 @@ import Head from 'next/head'
 import Logo from "./components/Logo";
 import { Button, Layout, Menu,Row,Col } from 'antd';
 import {
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
     UserOutlined,
     VideoCameraOutlined,
     UploadOutlined,
 } from '@ant-design/icons';
 import ThemeBtn from './components/ThemeBtn'
+import CollapsedBtn from './components/CollapsedBtn';
 const { Header, Sider, Content } = Layout;
 
 class Home extends React.Component {
@@ -49,10 +48,7 @@ class Home extends React.Component {
                             <Header style={{padding:'0 18px 0 12px'}}>
                             <Row justify={'space-between'}>
                                 <Col span={2}>
-                                    {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                                            style: { color: '#2f54eb', fontSize: '24px' },
-                                            onClick: this.toggle,
-                                        })}
+                                    <CollapsedBtn/>
                                 </Col>
                                 <Col span={2} style={{textAlign:'right'}}>
                                     <ThemeBtn />
