@@ -1,3 +1,4 @@
+import './styles/global.less'
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
