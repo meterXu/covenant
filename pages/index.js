@@ -16,9 +16,9 @@ class Home extends React.Component {
         collapsed: false
     };
 
-    toggle = () => {
+    handleToggle = (collapsed) => {
         this.setState({
-            collapsed: !this.state.collapsed,
+            collapsed,
         });
     };
     render() {
@@ -46,9 +46,12 @@ class Home extends React.Component {
                         </Sider>
                         <Layout>
                             <Header style={{padding:'0 18px 0 12px'}}>
-                            <Row justify={'space-between'}>
-                                <Col span={2}>
-                                    <CollapsedBtn/>
+                            <Row justify={'space-between'} align='middle'>
+                                <Col span={1}>
+                                    <CollapsedBtn collapsed={this.state.collapsed} onToggle={this.handleToggle}/>
+                                </Col>
+                                <Col span={21}>
+                                    <div style={{fontSize:'24px'}}>易于使用的后端API模拟工具</div>
                                 </Col>
                                 <Col span={2} style={{textAlign:'right'}}>
                                     <ThemeBtn />
