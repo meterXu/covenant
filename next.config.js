@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const lessToJS = require('less-vars-to-js');
 const withAntdLess = require('next-plugin-antd-less');
-const generateTheme   = require('./plugin');
+const generateTheme   = require('./lib/plugin');
 const { getThemeVariables } = require('antd/dist/theme');
 const prod = process.env.NODE_ENV === 'production';
 const prefix = prod ? '/next-dynamic-antd-theme/' : '/';

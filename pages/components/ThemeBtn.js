@@ -1,6 +1,6 @@
 import React from 'react'
 import {DarkIcon,LightIcon} from './Icon'
-import changeTheme from '../../jj'
+import changeTheme from '../../lib/themeplug'
 class ThemeBtn extends React.Component{
     state = {
         theme:'dark'
@@ -10,7 +10,7 @@ class ThemeBtn extends React.Component{
         this.setState({ theme },()=>{
             changeTheme(theme)
         });
-        
+
     }
     render() {
         const icon = this.state.theme==='dark'?< LightIcon onClick={this.handleChangeTheme} style={{ color: '#FFFFFFD9',fontSize: '24px',position:'relative',top:'3px' }}/>:
