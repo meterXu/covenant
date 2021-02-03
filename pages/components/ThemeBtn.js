@@ -6,10 +6,10 @@ import {inject,observer} from 'mobx-react'
 @observer
 class ThemeBtn extends React.Component{
     state = {
-        theme:'dark'
     }
     handleChangeTheme=()=>{
-        const theme = this.state.theme === 'default' ? 'dark' : 'default';
+        const theme = this.props.store.theme === 'default' ? 'dark' : 'default';
+        this.props.store.setTheme(theme)
         this.setState({ theme },()=>{
             changeTheme(theme)
         });

@@ -5,4 +5,7 @@ export default class Store {
         makeObservable(this)
     }
     @observable theme = 'dark'
+    @action setTheme = (theme)=>{
+        this.theme = theme
+    }
 }
