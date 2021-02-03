@@ -4,6 +4,7 @@ import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
 } from '@ant-design/icons';
+import '../styles/module.collapsedBtn.less'
 @inject('store')
 @observer
 export default class CollapsedBtn extends React.Component{
@@ -11,10 +12,10 @@ export default class CollapsedBtn extends React.Component{
         this.props.onToggle(!this.props.collapsed)
     }
     render(){
-        const color = this.props.store.theme==='default'?'#000000D9':'#FFFFFFD9'
+        const darkStyle = this.props.store.theme==='default'?'':'collapsed-btn-dark'
         const Icon = this.props.collapsed?
-        <MenuUnfoldOutlined onClick={this.handleToggle} style={{color: color, fontSize: '24px',position:'relative',top:'3px'}}/>
-        :<MenuFoldOutlined onClick={this.handleToggle}  style={{color: color, fontSize: '24px',position:'relative',top:'3px'}}/>
+        <MenuUnfoldOutlined onClick={this.handleToggle} className={['collapsed-btn',darkStyle]} />
+        :<MenuFoldOutlined onClick={this.handleToggle}  className={['collapsed-btn',darkStyle]}/>
         return (
             <>
             {Icon}
