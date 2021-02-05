@@ -1,16 +1,21 @@
-import {action, computed, makeObservable, observable, runInAction,extendObservable,autorun} from "mobx";
-import localStorage from 'mobx-localstorage';
-let data = null
+import {action, computed, makeObservable, observable,autorun} from "mobx";
+import ls from 'mobx-localstorage';
+let _theme = ''
 autorun(() => {
-    data = {theme:localStorage.getItem('theme')}
-});
+    if(ls){
+        _theme = ls.getItem('theme')
+    }
+});  
 export default class Store {
     constructor() {
         makeObservable(this)
     }
-    @observable theme = 'dark'
+    @computed 
+    get theme (){
+        return _theme
+    }
     @action setTheme = (theme)=>{
-        this.theme = theme
-        localStorage.setItem('theme',theme)
+        this._theme = theme
+        ls.setItem('theme',theme)
     }
 }

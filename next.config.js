@@ -16,10 +16,10 @@ const options = {
   lessJSPath:'https://cdnjs.cloudflare.com/ajax/libs/less.js/3.11.3/less.min.js',
   customThemes: { dark: lessToJS(fs.readFileSync(path.join(__dirname,'./theme/dark.less'), 'utf8'))},
 }
-const xx = generateTheme(options);
+const themeObj = generateTheme(options);
 module.exports = Object.assign({
   publicRuntimeConfig:{
-  next_dynamic_antd_theme: { themes:xx.themes, lessFilePath:options.lessFilePath, lessJSPath:options.lessJSPath },
+  next_dynamic_antd_theme: { themes:themeObj.themes, lessFilePath:options.lessFilePath, lessJSPath:options.lessJSPath },
 }},withAntdLess({
   modifyVars: getThemeVariables({
     dark: true
@@ -28,7 +28,7 @@ module.exports = Object.assign({
   cssLoaderOptions: {
   },
   webpack(config) {
-    config.plugins.push(xx.plugin)
+    config.plugins.push(themeObj.plugin)
     return config;
   },
 }));
