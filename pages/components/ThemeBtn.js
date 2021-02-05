@@ -12,6 +12,7 @@ class ThemeBtn extends React.Component{
         const theme = this.props.store.theme === 'default' ? 'dark' : 'default';
         this.props.store.setTheme(theme)
         this.setState({ theme },()=>{
+            debugger
             changeTheme(theme)
         });
 
