@@ -8,9 +8,10 @@ router.get('(/mocky.*)', async (ctx, next) => {
         case 'police':{
             switch (path){
                 case 'message/exchange/list':{
-                    return ctx.json({
+                    ctx.body = {
                         jj:'hello'
-                    })
+                    }
+                    return
                 }
             }
         }
