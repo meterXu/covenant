@@ -1,3 +1,5 @@
+create database IF NOT EXISTS covenant DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 create table collections
 (
 	id int auto_increment
