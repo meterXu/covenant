@@ -1,7 +1,7 @@
 {
   "host": "isaacxu.com",
   "user": "root",
-  "port": 3306,
+  "port": 8310,
   "password": "root",
   "database": "covenant"
 }
