@@ -1,4 +1,6 @@
 const Koa = require('koa')
+const charset = require('koa-charset');
+const cors = require('koa2-cors');
 const next = require('next')
 const router = require('./router/index')
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -18,7 +20,8 @@ app.prepare().then(() => {
         ctx.res.statusCode = 200
         await next()
     })
-
+    // server.use(cors());
+    // server.use(charset)
     server.use(router.routes())
     server.listen(port, () => {
         console.log(`> Ready on http://localhost:${port}`)
