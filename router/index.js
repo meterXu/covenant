@@ -1,5 +1,5 @@
 const router = require('@koa/router')();
-const {getParams} = require('../lib')
+const {getParams} = require('../lib/utils')
 
 router.all('(/mocky.*)', async (ctx, next) => {
     const [name,path] = getParams(ctx.req)
