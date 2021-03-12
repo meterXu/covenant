@@ -10,11 +10,9 @@ router.all('(/mocky.*)', async (ctx, next) => {
         if(query.length>0){
             ctx.status = 200
             ctx.body = JSON.parse(query[0]['body'])
-        }else{
-            ctx.status = 404
-            ctx.body = '未找到相应的接口'
         }
-        ctx.body = 'hello mocky!'
+        ctx.status = 404
+        ctx.body = '未找到相应的接口！'
     }catch (ex) {
         console.error(ex)
         ctx.status = 500
