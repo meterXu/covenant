@@ -36,4 +36,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-public/db.conf.json
+/public/db.conf.json
