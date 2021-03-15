@@ -3,6 +3,10 @@ const {query} = require('../lib/provider')
 const {getParams} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 
+router.post('/addCollection',async (ctx,next)=>{
+
+})
+
 router.all('(/mocky.*)',  async(ctx, next) => {
     try{
         const [name,path] = getParams(ctx.req)
