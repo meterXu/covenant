@@ -6,7 +6,7 @@ const sqlText = require('../lib/sql')
 
 router.get('/collectionList',async (ctx,next)=>{
     let params = []
-    let {name,identifier} = ctx.request.body;
+    let {name,identifier} = ctx.request.query;
     let sql = sqlText.collectionList
     if(name){
         sql += `and name = ?`
@@ -17,21 +17,12 @@ router.get('/collectionList',async (ctx,next)=>{
         params.push(identifier)
     }
     const queryData = await query(sql,params)
-    if(queryData.length>0){
-        ctx.status = 200
-        ctx.body={
-            success:true,
-            message:'查询成功',
-            code:ctx.status,
-            record:queryData
-        }
-    }else {
-        ctx.status = 500
-        ctx.body={
-            success:false,
-            message:'查询失败',
-            code:ctx.status
-        }
+    ctx.status = 200
+    ctx.body={
+        success:true,
+        message:'查询成功',
+        code:ctx.status,
+        record:queryData
     }
 })
 

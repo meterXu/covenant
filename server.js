@@ -10,8 +10,8 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
     const server = new Koa()
-    server.use(koaBody());
     server.use(cors());
+    server.use(koaBody());
     router.all('(.*)', async (ctx) => {
         await handle(ctx.req, ctx.res)
         ctx.respond = false
