@@ -4,7 +4,9 @@ const {getParams} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 
 router.post('/addCollection',async (ctx,next)=>{
-
+    let body = ctx.request.body;
+    const upc = await query(sqlText.addCollection,body)
+    debugger
 })
 
 router.all('(/mocky.*)',  async(ctx, next) => {

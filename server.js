@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const cors = require('koa2-cors');
+const koaBody = require('koa-body');
 const next = require('next')
 const router = require('./router/index')
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -9,6 +10,8 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
     const server = new Koa()
+    server.use(koaBody());
+    server.use(cors());
     router.all('(.*)', async (ctx) => {
         await handle(ctx.req, ctx.res)
         ctx.respond = false
@@ -17,7 +20,6 @@ app.prepare().then(() => {
         ctx.res.statusCode = 200
         await next()
     })
-    server.use(cors());
     server.use(router.routes())
     server.listen(port, () => {
         console.log(`> Ready on http://localhost:${port}`)
