@@ -3,6 +3,38 @@ const {query} = require('../lib/provider')
 const {getParams} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 
+
+router.get('/collectionList',async (ctx,next)=>{
+    let params = []
+    let {name,identifier} = ctx.request.body;
+    let sql = sqlText.collectionList
+    if(name){
+        sql += `and name = ?`
+        params.push(name)
+    }
+    if(identifier){
+        sql += `and identifier = ?`
+        params.push(identifier)
+    }
+    const queryData = await query(sql,params)
+    if(queryData.length>0){
+        ctx.status = 200
+        ctx.body={
+            success:true,
+            message:'查询成功',
+            code:ctx.status,
+            record:queryData
+        }
+    }else {
+        ctx.status = 500
+        ctx.body={
+            success:false,
+            message:'查询失败',
+            code:ctx.status
+        }
+    }
+})
+
 router.post('/addCollection',async (ctx,next)=>{
     let body = ctx.request.body;
     const upc = await query(sqlText.addCollection,body)
@@ -22,6 +54,7 @@ router.post('/addCollection',async (ctx,next)=>{
         }
     }
 })
+
 
 router.all('(/mocky.*)',  async(ctx, next) => {
     try{
