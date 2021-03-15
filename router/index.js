@@ -6,7 +6,21 @@ const sqlText = require('../lib/sql')
 router.post('/addCollection',async (ctx,next)=>{
     let body = ctx.request.body;
     const upc = await query(sqlText.addCollection,body)
-    debugger
+    if(upc.affectedRows>0){
+        ctx.status = 200
+        ctx.body={
+            success:true,
+            message:'添加成功',
+            code:ctx.status
+        }
+    }else {
+        ctx.status = 500
+        ctx.body={
+            success:false,
+            message:'添加失败',
+            code:ctx.status
+        }
+    }
 })
 
 router.all('(/mocky.*)',  async(ctx, next) => {
