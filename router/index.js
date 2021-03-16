@@ -29,11 +29,17 @@ router.get('/collectionList',async (ctx,next)=>{
 router.post('/editCollection',async (ctx,next)=>{
     let body = ctx.request.body;
     try{
-        const upc = await query(body.id?sqlText.editCollection:sqlText.addCollection,body.id?[
-            body.name,
-            body.identifier,
-            body.remark,
-        ]:body)
+        let upc = null
+        if(body.id){
+            upc = await query(sqlText.editCollection,[
+                body.name,
+                body.identifier,
+                body.remark,
+                body.id
+            ])
+        }else {
+            upc = await query(sqlText.addCollection,body)
+        }
         if(upc.affectedRows>0){
             ctx.status = 200
             ctx.body={
