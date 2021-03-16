@@ -4,7 +4,7 @@ const sqlText = require('../lib/sql')
 
 router.get('/list',async (ctx,next)=>{
     let {path,identifier,collectionId,page,rp} = ctx.request.query;
-    let params = [`%${path}%`,`%${identifier}%`,`%${collectionId}%`]
+    let params = [`%${path||''}%`,`%${identifier||''}%`,collectionId]
     let sql = sqlText.responseList
     const {record,total} = await pagingQuery(sql,params,page,rp)
     ctx.status = 200
