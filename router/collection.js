@@ -36,6 +36,7 @@ router.post('/edit',async (ctx,next)=>{
         ctx.body=errorRes('维护失败')
     }
 })
+
 router.delete('/delete',async (ctx,next)=>{
     let {id} = ctx.request.query;
     if(id){
