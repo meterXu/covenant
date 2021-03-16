@@ -1,36 +1,21 @@
 const router = require('@koa/router')();
 const {query} = require('../lib/provider')
-const {getParams,pagingQuery} = require('../lib/utils')
+const {getParams,pagingQuery,successRes,errorRes} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 
-
 router.get('/collectionList',async (ctx,next)=>{
-    let params = []
     let {name,identifier,page,rp} = ctx.request.query;
+    let params = [`%${name}%`,`%${identifier}%`]
     let sql = sqlText.collectionList
-    if(name){
-        sql += "and name like ?"
-        params.push(`%${name}%`)
-    }
-    if(identifier){
-        sql += "and identifier like ?"
-        params.push(`%${identifier}%`)
-    }
     const {record,total} = await pagingQuery(sql,params,page,rp)
     ctx.status = 200
-    ctx.body={
-        success:true,
-        message:'查询成功',
-        code:ctx.status,
-        result:{
-            record:record,
-            total: total,
-            page: parseInt(page),
-            rp:parseInt(rp)
-        }
-    }
+    ctx.body=successRes('查询成功',{
+        record:record,
+        total: total,
+        page: parseInt(page),
+        rp:parseInt(rp)
+    })
 })
-
 router.post('/editCollection',async (ctx,next)=>{
     let body = ctx.request.body;
     let upc;
@@ -46,42 +31,43 @@ router.post('/editCollection',async (ctx,next)=>{
     }
     if(upc.affectedRows>0){
         ctx.status = 200
-        ctx.body={
-            success:true,
-            message:'维护成功',
-            code:ctx.status
-        }
+        ctx.body=successRes('维护成功')
     }else {
         ctx.status = 500
-        ctx.body={
-            success:false,
-            message:'维护失败',
-            code:ctx.status
-        }
+        ctx.body=errorRes('维护失败')
     }
 })
-
 router.delete('/deleteCollection',async (ctx,next)=>{
     let {id} = ctx.request.query;
     if(id){
        const upc = await query(sqlText.deleteCollection,[id])
         if(upc.affectedRows>0){
             ctx.status = 200
-            ctx.body = {
-                success:true,
-                message:'删除成功',
-                code:ctx.status
-            }
+            ctx.body = successRes('删除成功')
         }else {
             ctx.status = 500
-            ctx.body={
-                success:false,
-                message:'删除失败',
-                code:ctx.status
-            }
+            ctx.body=errorRes('删除失败，数据不存在')
         }
     }
 })
+router.get('/dicList',async (ctx,next)=>{
+    const {code,text} = ctx.request.query
+    const params = [code,`%${text}%`]
+    let sql = sqlText.dicList
+    if(code){
+        const queryData = await query(sql,params)
+        ctx.status = 200
+        ctx.body = successRes('查询成功',{
+            record:queryData,
+        })
+    }else {
+        ctx.status = 500
+        ctx.body=errorRes('请传入code')
+    }
+
+})
+
+
 router.all('(/mocky.*)',  async(ctx, next) => {
     try{
         const [name,path] = getParams(ctx.req)
@@ -104,8 +90,4 @@ router.all('(/mocky.*)',  async(ctx, next) => {
         ctx.body = ex.message
     }
 });
-
-
-
-
 module.exports = router;
