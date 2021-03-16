@@ -2,7 +2,7 @@ const router = require('@koa/router')();
 const {query} = require('../lib/provider')
 const {getParams,pagingQuery,successRes,errorRes} = require('../lib/utils')
 const sqlText = require('../lib/sql')
-
+require('./mocky')
 router.get('/collectionList',async (ctx,next)=>{
     let {name,identifier,page,rp} = ctx.request.query;
     let params = [`%${name}%`,`%${identifier}%`]
@@ -64,30 +64,5 @@ router.get('/dicList',async (ctx,next)=>{
         ctx.status = 500
         ctx.body=errorRes('请传入code')
     }
-
 })
-
-
-router.all('(/mocky.*)',  async(ctx, next) => {
-    try{
-        const [name,path] = getParams(ctx.req)
-        const queryData = await query(sqlText.mockySql,[name,path])
-        if(queryData.length>0){
-            const rowData =queryData[0]
-            ctx.status = 200
-            if(rowData.headers){
-                ctx.set(JSON.parse(rowData.headers));
-            }
-            ctx.type = `${rowData.contentType}; charset=${rowData.charset}`
-            ctx.body = queryData[0].body
-        }else{
-            ctx.status = 404
-            ctx.body = '未找到相应的接口！'
-        }
-    }catch (ex) {
-        console.error(ex)
-        ctx.status = 500
-        ctx.body = ex.message
-    }
-});
 module.exports = router;
