@@ -9,12 +9,12 @@ router.get('/collectionList',async (ctx,next)=>{
     let {name,identifier} = ctx.request.query;
     let sql = sqlText.collectionList
     if(name){
-        sql += `and name = ?`
-        params.push(name)
+        sql += "and name like ?"
+        params.push(`%${name}%`)
     }
     if(identifier){
-        sql += `and identifier = ?`
-        params.push(identifier)
+        sql += "and identifier like ?"
+        params.push(`%${identifier}%`)
     }
     const queryData = await query(sql,params)
     ctx.status = 200
