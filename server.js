@@ -12,16 +12,29 @@ app.prepare().then(() => {
     const server = new Koa()
     server.use(cors());
     server.use(koaBody());
+    server.use(async (ctx, next) => {
+        try{
+            ctx.status = 200
+            await next()
+        }catch (err){
+            ctx.status = err.statusCode || err.status || 500
+            ctx.body = {
+                success:false,
+                message:err.message,
+                code:ctx.status
+            }
+            // ctx.app.emit('error', err);
+        }
+    })
     router.all('(.*)', async (ctx) => {
         await handle(ctx.req, ctx.res)
         ctx.respond = false
     })
-    server.use(async (ctx, next) => {
-        ctx.res.statusCode = 200
-        await next()
-    })
     server.use(router.routes())
+    server.on('error', (error)=>{
+        console.error(error);
+    });
     server.listen(port, () => {
-        console.log(`> Ready on http://localhost:${port}`)
+        console.log(`> ready on http://localhost:${port}`)
     })
 })

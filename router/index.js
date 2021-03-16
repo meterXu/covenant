@@ -28,34 +28,25 @@ router.get('/collectionList',async (ctx,next)=>{
 
 router.post('/editCollection',async (ctx,next)=>{
     let body = ctx.request.body;
-    try{
-        let upc = null
-        if(body.id){
-            upc = await query(sqlText.editCollection,[
-                body.name,
-                body.identifier,
-                body.remark,
-                body.id
-            ])
-        }else {
-            upc = await query(sqlText.addCollection,body)
+    let upc;
+    if(body.id){
+        upc = await query(sqlText.editCollection,[
+            body.name,
+            body.identifier,
+            body.remark,
+            body.id
+        ])
+    }else {
+        upc = await query(sqlText.addCollection,body)
+    }
+    if(upc.affectedRows>0){
+        ctx.status = 200
+        ctx.body={
+            success:true,
+            message:'维护成功',
+            code:ctx.status
         }
-        if(upc.affectedRows>0){
-            ctx.status = 200
-            ctx.body={
-                success:true,
-                message:'维护成功',
-                code:ctx.status
-            }
-        }else {
-            ctx.status = 500
-            ctx.body={
-                success:false,
-                message:'维护失败',
-                code:ctx.status
-            }
-        }
-    }catch (ex){
+    }else {
         ctx.status = 500
         ctx.body={
             success:false,
@@ -63,7 +54,6 @@ router.post('/editCollection',async (ctx,next)=>{
             code:ctx.status
         }
     }
-
 })
 
 
