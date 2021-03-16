@@ -2,7 +2,7 @@ const router = require('@koa/router')();
 const {query} = require('../lib/provider')
 const {pagingQuery,successRes,errorRes} = require('../lib/utils')
 const sqlText = require('../lib/sql')
-router.get('/collectionList',async (ctx,next)=>{
+router.get('/list',async (ctx,next)=>{
     let {name,identifier,page,rp} = ctx.request.query;
     let params = [`%${name}%`,`%${identifier}%`]
     let sql = sqlText.collectionList
@@ -15,7 +15,7 @@ router.get('/collectionList',async (ctx,next)=>{
         rp:parseInt(rp)
     })
 })
-router.post('/editCollection',async (ctx,next)=>{
+router.post('/edit',async (ctx,next)=>{
     let body = ctx.request.body;
     let upc;
     if(body.id){
@@ -36,7 +36,7 @@ router.post('/editCollection',async (ctx,next)=>{
         ctx.body=errorRes('维护失败')
     }
 })
-router.delete('/deleteCollection',async (ctx,next)=>{
+router.delete('/delete',async (ctx,next)=>{
     let {id} = ctx.request.query;
     if(id){
         const upc = await query(sqlText.deleteCollection,[id])

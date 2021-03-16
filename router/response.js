@@ -2,7 +2,7 @@ const router = require('@koa/router')();
 const {pagingQuery,successRes} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 
-router.get('/response/list',async (ctx,next)=>{
+router.get('/list',async (ctx,next)=>{
     let {path,identifier,collectionId,page,rp} = ctx.request.query;
     let params = [`%${path}%`,`%${identifier}%`,`%${collectionId}%`]
     let sql = sqlText.responseList
