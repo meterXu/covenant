@@ -49,3 +49,5 @@ router.delete('/deleteCollection',async (ctx,next)=>{
         }
     }
 })
+
+module.exports=router

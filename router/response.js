@@ -15,3 +15,4 @@ router.get('/response/list',async (ctx,next)=>{
         rp:parseInt(rp)
     })
 })
+module.exports=router

@@ -17,3 +17,4 @@ router.get('/dicList',async (ctx,next)=>{
         ctx.body=errorRes('请传入code')
     }
 })
+module.exports=router
