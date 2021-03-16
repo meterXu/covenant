@@ -1,12 +1,12 @@
 const router = require('@koa/router')();
 const {query} = require('../lib/provider')
-const {getParams} = require('../lib/utils')
+const {getParams,pagingQuery} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 
 
 router.get('/collectionList',async (ctx,next)=>{
     let params = []
-    let {name,identifier} = ctx.request.query;
+    let {name,identifier,page,rp} = ctx.request.query;
     let sql = sqlText.collectionList
     if(name){
         sql += "and name like ?"
@@ -16,13 +16,18 @@ router.get('/collectionList',async (ctx,next)=>{
         sql += "and identifier like ?"
         params.push(`%${identifier}%`)
     }
-    const queryData = await query(sql,params)
+    const {record,total} = await pagingQuery(sql,params,page,rp)
     ctx.status = 200
     ctx.body={
         success:true,
         message:'查询成功',
         code:ctx.status,
-        record:queryData
+        result:{
+            record:record,
+            total: total,
+            page: parseInt(page),
+            rp:parseInt(rp)
+        }
     }
 })
 
