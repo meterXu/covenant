@@ -56,9 +56,27 @@ router.post('/editCollection',async (ctx,next)=>{
     }
 })
 
-
-
-
+router.delete('/deleteCollection',async (ctx,next)=>{
+    let {id} = ctx.request.query;
+    if(id){
+       const upc = await query(sqlText.deleteCollection,[id])
+        if(upc.affectedRows>0){
+            ctx.status = 200
+            ctx.body = {
+                success:true,
+                message:'删除成功',
+                code:ctx.status
+            }
+        }else {
+            ctx.status = 500
+            ctx.body={
+                success:false,
+                message:'删除失败',
+                code:ctx.status
+            }
+        }
+    }
+})
 router.all('(/mocky.*)',  async(ctx, next) => {
     try{
         const [name,path] = getParams(ctx.req)

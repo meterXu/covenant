@@ -23,7 +23,7 @@ app.prepare().then(() => {
                 message:err.message,
                 code:ctx.status
             }
-            // ctx.app.emit('error', err);
+            ctx.app.emit('error', err);
         }
     })
     router.all('(.*)', async (ctx) => {
