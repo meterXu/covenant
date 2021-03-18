@@ -2,7 +2,7 @@ const router = require('@koa/router')();
 const {query} = require('../lib/provider')
 const {getParams} = require('../lib/utils')
 const sqlText = require('../lib/sql')
-router.all('/',  async(ctx, next) => {
+router.all('/',async(ctx, next) => {
     try{
         const [name,path] = getParams(ctx.req)
         const queryData = await query(sqlText.mockySql,[name,path])

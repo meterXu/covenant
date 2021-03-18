@@ -1,5 +1,5 @@
 const router = require('@koa/router')();
-const {query} = require('../lib/provider')
+const {query,exec} = require('../lib/provider')
 const {pagingQuery,successRes,errorRes} = require('../lib/utils')
 const sqlText = require('../lib/sql')
 router.get('/list',async (ctx,next)=>{
@@ -19,14 +19,14 @@ router.post('/edit',async (ctx,next)=>{
     let body = ctx.request.body;
     let upc;
     if(body.id){
-        upc = await query(sqlText.editCollection,[
+        upc = await exec(sqlText.editCollection,[
             body.name,
             body.identifier,
             body.remark,
             body.id
         ])
     }else {
-        upc = await query(sqlText.addCollection,body)
+        upc = await exec(sqlText.addCollection,body)
     }
     if(upc.affectedRows>0){
         ctx.status = 200
@@ -40,7 +40,7 @@ router.post('/edit',async (ctx,next)=>{
 router.delete('/delete',async (ctx,next)=>{
     let {id} = ctx.request.query;
     if(id){
-        const upc = await query(sqlText.deleteCollection,[id])
+        const upc = await exec(sqlText.deleteCollection,[id])
         if(upc.affectedRows>0){
             ctx.status = 200
             ctx.body = successRes('删除成功')
