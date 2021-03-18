@@ -37,13 +37,7 @@
     "next-transpile-modules": "^3.0.2",
     "sqlite3": "^5.0.2"
   },
-  "files": [
-    ".next",
-    "lib",
-    "node_modules",
-    "public",
-    "router",
-    "theme",
-    "next.config.js"
-  ]
+  "bin": {
+    "covenant": "NODE_ENV=production node server.js"
+  }
 }
