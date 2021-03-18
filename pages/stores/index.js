@@ -1,4 +1,5 @@
 import {action, computed, makeObservable, observable,autorun} from "mobx";
+const window = window||{}
 let _window = null
 autorun(()=>{
     if(!_window)
