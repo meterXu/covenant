@@ -28,7 +28,7 @@ router.post('/edit',async (ctx,next)=>{
     }else {
         upc = await exec(sqlText.addCollection,body)
     }
-    if(upc.affectedRows>0){
+    if(upc>0){
         ctx.status = 200
         ctx.body=successRes('维护成功')
     }else {
