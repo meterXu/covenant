@@ -6,7 +6,7 @@ const withAntdLess = require('next-plugin-antd-less');
 const generateTheme   = require('./lib/plugin');
 const { getThemeVariables } = require('antd/dist/theme');
 const prod = process.env.NODE_ENV === 'production';
-const prefix = prod ? '/next-dynamic-antd-theme/' : '/';
+const prefix = prod ? './' : './';
 const options = {
   antDir: path.join(__dirname, './node_modules/antd'),
   stylesDir: path.join(__dirname, './theme'),
@@ -17,7 +17,8 @@ const options = {
   customThemes: { dark: lessToJS(fs.readFileSync(path.join(__dirname,'./theme/dark.less'), 'utf8'))},
 }
 const themeObj = generateTheme(options);
-module.exports = Object.assign({
+const _exports= Object.assign({
+  assetPrefix:'./',
   publicRuntimeConfig:{
   next_dynamic_antd_theme: { themes:themeObj.themes, lessFilePath:options.lessFilePath, lessJSPath:options.lessJSPath },
 }},withAntdLess({
@@ -32,3 +33,5 @@ module.exports = Object.assign({
     return config;
   },
 }));
+
+module.exports = _exports
