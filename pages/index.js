@@ -26,7 +26,7 @@ class Home extends React.Component {
             <div style={{ minHeight: '100vh' }}>
                 <Head>
                     <title>covenant</title>
-                    <link rel="icon" href="/favicon.ico" />
+                    <link rel="icon" href="./favicon.ico" />
                 </Head>
                 <main style={{ minHeight: '100vh' }}>
                     <Layout>
